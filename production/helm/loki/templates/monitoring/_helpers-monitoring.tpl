@@ -22,6 +22,19 @@ Client definition for LogsInstance
       key: password
   {{- else if .Values.loki.auth_enabled }}
   tenantId: {{ .Values.monitoring.selfMonitoring.tenant.name | quote }}
+  {{- if .Values.gateway.basicAuth.enabled and .Values.gateway.basicAuth.username }}
+  basicAuth:
+    username: {{ .Values.gateway.basicAuth.username | quote }}
+    passsword: {{ .Values.gateway.basicAuth.password | quote }}
+  {{- else if .Values.loki.basicAuth.enabled and .Values.loki.basicAuth.existingSecret }}
+  basicAuth:
+    username:
+      name: {{ .Values.loki.basicAuth.existingSecret }}
+      key: username
+    password:
+      name: {{ .Values.loki.basicAuth.existingSecret }}
+      key: password
+  {{ - end }}
   {{- end }}
 {{- end -}}
 
