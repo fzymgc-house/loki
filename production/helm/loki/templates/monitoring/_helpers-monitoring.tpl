@@ -26,13 +26,13 @@ Client definition for LogsInstance
   basicAuth:
     username: {{ .Values.gateway.basicAuth.username | quote }}
     passsword: {{ .Values.gateway.basicAuth.password | quote }}
-    {{- else if and .Values.loki.basicAuth.enabled .Values.loki.basicAuth.existingSecret }}
+    {{- else if and .Values.gateway.basicAuth.enabled .Values.gateway.basicAuth.existingSecret }}
   basicAuth:
     username:
-      name: {{ .Values.loki.basicAuth.existingSecret }}
+      name: {{ .Values.gateway.basicAuth.existingSecret }}
       key: username
     password:
-      name: {{ .Values.loki.basicAuth.existingSecret }}
+      name: {{ .Values.gateway.basicAuth.existingSecret }}
       key: password
     {{- end }}
   {{- end }}
