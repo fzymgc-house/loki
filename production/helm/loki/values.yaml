@@ -657,6 +657,11 @@ monitoring:
       # -- Namespace to create additional tenant token secret in. Useful if your Grafana instance
       # is in a separate namespace. Token will still be created in the canary namespace.
       secretNamespace: "{{ .Release.Namespace }}"
+    basicAuth:
+      enabled: false
+      username: null
+      password: null
+      existingSecret: null
     # Grafana Agent configuration
     grafanaAgent:
       # -- Controls whether to install the Grafana Agent Operator and its CRDs.

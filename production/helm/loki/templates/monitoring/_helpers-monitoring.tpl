@@ -22,17 +22,17 @@ Client definition for LogsInstance
       key: password
   {{- else if .Values.loki.auth_enabled }}
   tenantId: {{ .Values.monitoring.selfMonitoring.tenant.name | quote }}
-    {{- if and .Values.gateway.basicAuth.enabled .Values.gateway.basicAuth.username }}
+    {{- if and .Values.monitoring.selfMonitoring.basicAuth.enabled .Values.monitoring.selfMonitoring.basicAuth.username }}
   basicAuth:
-    username: {{ .Values.gateway.basicAuth.username | quote }}
-    passsword: {{ .Values.gateway.basicAuth.password | quote }}
-    {{- else if and .Values.gateway.basicAuth.enabled .Values.gateway.basicAuth.existingSecret }}
+    username: {{ .Values.monitoring.selfMonitoring.basicAuth.username | quote }}
+    passsword: {{ .Values.monitoring.selfMonitoring.basicAuth.password | quote }}
+    {{- else if and .Values.monitoring.selfMonitoring.basicAuth.enabled .Values.monitoring.selfMonitoring.basicAuth.existingSecret }}
   basicAuth:
     username:
-      name: {{ .Values.gateway.basicAuth.existingSecret }}
+      name: {{ .Values.monitoring.selfMonitoring.basicAuth.existingSecret }}
       key: username
     password:
-      name: {{ .Values.gateway.basicAuth.existingSecret }}
+      name: {{ .Values.monitoring.selfMonitoring.basicAuth.existingSecret }}
       key: password
     {{- end }}
   {{- end }}
